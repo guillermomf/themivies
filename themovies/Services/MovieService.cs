@@ -15,7 +15,7 @@ namespace themovies.Services
             httpClient = new HttpClient();
         }
 
-        public async Task<List<Movie>> GetUpcomming()
+        public async Task<List<Movie>> GetUpcoming()
         {
             return await GetMovies($"{Config.UpcomingEndpoint}");
         }

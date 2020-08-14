@@ -6,7 +6,7 @@ namespace themovies.Services
 {
     public interface IMovieService
     {
-        Task<List<Movie>> GetUpcomming();
+        Task<List<Movie>> GetUpcoming();
         Task<List<Movie>> GetTopRated();
         Task<List<Movie>> GetPopular();
     }
