@@ -20,14 +20,12 @@
                    Source="{Binding MovieDetail.BackdropPath}"
                    Aspect="AspectFill"/>
             <Button Grid.Row="0"
-                    Text="Back"
-                    TextColor="White"
-                    FontAttributes="Bold"
+                    ImageSource="backicon"
                     HorizontalOptions="Start"
                     VerticalOptions="Start"
                     Clicked="Button_Clicked"
-                    Margin="20"
-                    BackgroundColor="Transparent"/>
+                    BackgroundColor="Transparent"
+                    Margin="10,20"/>
             <Grid Grid.Row="1"
                   Padding="30"
                   BackgroundColor="#293647">
@@ -44,7 +42,7 @@
                            FontSize="Large"/>
                     <Label Text="{Binding MovieDetail.Overview}"
                            TextColor="#7B8593"
-                           FontSize="Medium"/>
+                           FontSize="Small"/>
                 </StackLayout>
                 <CollectionView Grid.Row="1"
                                 ItemsSource="{Binding MovieCreditList}"
@@ -61,19 +59,20 @@
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout WidthRequest="60"
+                            <StackLayout WidthRequest="50"
                                   Padding="10">
                                 <Frame Grid.Row="0"
                                        HasShadow="False"
-                                       CornerRadius="30"
-                                       HeightRequest="60"
+                                       CornerRadius="25"
+                                       HeightRequest="50"
                                        Padding="0"
-                                       IsClippedToBounds="True">
+                                       IsClippedToBounds="True"
+                                       HorizontalOptions="FillAndExpand">
                                     <Image Source="{Binding ProfilePath}"
                                            Aspect="AspectFill"/>
                                 </Frame>
                                 <Label Text="{Binding Name}"
-                                       FontSize="Small"
+                                       FontSize="Micro"
                                        TextColor="#7B8593"/>
                             </StackLayout>
                         </DataTemplate>
@@ -92,24 +91,24 @@
                     <Label Grid.Row="0" Grid.Column="0" Text="Studio"
                            TextColor="White"
                            FontAttributes="Bold"
-                           FontSize="Medium"/>
+                           FontSize="Small"/>
                     <Label Grid.Row="0" Grid.Column="1" Text="{Binding MovieDetail.Studio}"
                            TextColor="#7B8593"
-                           FontSize="Medium"/>
+                           FontSize="Small"/>
                     <Label Grid.Row="1" Grid.Column="0" Text="Genre"
                            TextColor="White"
                            FontAttributes="Bold"
-                           FontSize="Medium"/>
+                           FontSize="Small"/>
                     <Label Grid.Row="1" Grid.Column="1" Text="{Binding MovieDetail.Genre}"
                            TextColor="#7B8593"
-                           FontSize="Medium"/>
+                           FontSize="Small"/>
                     <Label Grid.Row="2" Grid.Column="0" Text="Release"
                            TextColor="White"
                            FontAttributes="Bold"
-                           FontSize="Medium"/>
+                           FontSize="Small"/>
                     <Label Grid.Row="2" Grid.Column="1" Text="{Binding MovieDetail.ReleaseDate, StringFormat='{0:yyyy}'}"
                            TextColor="#7B8593"
-                           FontSize="Medium"/>
+                           FontSize="Small"/>
                 </Grid>
             </Grid>
         </Grid>

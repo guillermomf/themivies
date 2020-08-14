@@ -133,4 +133,7 @@
       <Name>themovies</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\backicon.png" />
+  </ItemGroup>
 </Project>
