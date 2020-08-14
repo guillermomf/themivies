@@ -1,6 +1,5 @@
-﻿using System;
+﻿using themovies.Pages;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace themovies
 {
@@ -10,7 +9,7 @@ namespace themovies
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new HomePage());
         }
 
         protected override void OnStart()

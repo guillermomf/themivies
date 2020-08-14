@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:themovies.ViewModels"
+             x:Class="themovies.Pages.HomePage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid Background="#5CA2D4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".3*"/>
+            <RowDefinition Height=".7*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Center"
+                     Padding="40"
+                     Spacing="20">
+            <Label Text="Hello, what do you want to watch?"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="30"/>
+            <Frame Padding="-10"
+                   BackgroundColor="White"
+                   HasShadow="False"
+                   CornerRadius="10"
+                   Opacity=".5">
+                <SearchBar Placeholder="Search"
+                       BackgroundColor="Transparent"
+                       CancelButtonColor="#293647"
+                       TextColor="#293647"/>
+            </Frame>
+        </StackLayout>
+        <Frame Grid.Row="1"
+               BackgroundColor="#293647"
+               HasShadow="False"
+               CornerRadius="20"
+               Padding="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0"
+                             Padding="0,20">
+                    <Label Text="RECOMMENDED FOR YOU"
+                           TextColor="White"
+                           FontSize="Medium"
+                           FontAttributes="Bold"
+                           Padding="10,0"/>
+                    <CollectionView ItemsSource="{Binding UpcommingList}"
+                                    SelectionMode="Single"
+                                    SelectedItem="{Binding SelectedMovie}"
+                                    SelectionChanged="CollectionView_SelectionChanged">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid WidthRequest="120"
+                                      Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".8*"/>
+                                        <RowDefinition Height=".10*"/>
+                                        <RowDefinition Height=".10*"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame Grid.Row="0"
+                                           HasShadow="False"
+                                           CornerRadius="20"
+                                           Padding="0"
+                                           IsClippedToBounds="True">
+                                        <Image Source="{Binding PosterPath}"
+                                               Aspect="AspectFill"/>
+                                    </Frame>
+                                    <Label Grid.Row="1"
+                                           Text="{Binding OriginalTitle}"
+                                           FontSize="Small"
+                                           TextColor="White"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                <StackLayout Grid.Row="1"
+                             Padding="0,20">
+                    <Label Text="TOP RATED"
+                           TextColor="White"
+                           FontSize="Medium"
+                           FontAttributes="Bold"
+                           Padding="10,0"/>
+                    <CollectionView ItemsSource="{Binding TopRatedList}"
+                                    SelectionMode="Single">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Horizontal"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid WidthRequest="120"
+                                      Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".8*"/>
+                                        <RowDefinition Height=".10*"/>
+                                        <RowDefinition Height=".10*"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame Grid.Row="0"
+                                           HasShadow="False"
+                                           CornerRadius="20"
+                                           Padding="0"
+                                           IsClippedToBounds="True">
+                                        <Image Source="{Binding PosterPath}"
+                                               Aspect="AspectFill"/>
+                                    </Frame>
+                                    <Label Grid.Row="1"
+                                           Text="{Binding OriginalTitle}"
+                                           FontSize="Small"
+                                           TextColor="White"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>
