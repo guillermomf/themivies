@@ -3,45 +3,114 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:themovies.ViewModels"
              x:Class="themovies.Pages.MovieDetailPage"
-             BackgroundColor="#ECECEC">
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <vm:MovieDetailViewModel/>
     </ContentPage.BindingContext>
     <Frame HasShadow="False"
            Padding="0"
-           Margin="20"
-           CornerRadius="20"
+           CornerRadius="0"
            IsClippedToBounds="True">
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height=".3*"/>
-                <RowDefinition Height=".7*"/>
+                <RowDefinition Height=".4*"/>
+                <RowDefinition Height=".6*"/>
             </Grid.RowDefinitions>
             <Image Grid.Row="0"
-                   Source="{Binding Movie.BackdropPath}"
+                   Source="{Binding MovieDetail.BackdropPath}"
                    Aspect="AspectFill"/>
+            <Button Grid.Row="0"
+                    Text="Back"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    Clicked="Button_Clicked"
+                    Margin="20"
+                    BackgroundColor="Transparent"/>
             <Grid Grid.Row="1"
-                  Padding="30,20"
+                  Padding="30"
                   BackgroundColor="#293647">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height=".1*"/>
-                    <RowDefinition Height=".4*"/>
+                    <RowDefinition Height=".5*"/>
                     <RowDefinition Height=".3*"/>
                     <RowDefinition Height=".2*"/>
                 </Grid.RowDefinitions>
                 <StackLayout Grid.Row="0"
-                             VerticalOptions="Center">
-                    <Label Text="{Binding Movie.OriginalTitle}"
+                             Spacing="20">
+                    <Label Text="{Binding MovieDetail.Title}"
                            TextColor="White"
                            FontAttributes="Bold"
                            FontSize="Large"/>
-                </StackLayout>
-                <StackLayout Grid.Row="1">
-                    <Label Text="{Binding Movie.Overview}"
+                    <Label Text="{Binding MovieDetail.Overview}"
                            TextColor="#7B8593"
                            FontSize="Medium"/>
                 </StackLayout>
-                
+                <CollectionView Grid.Row="1"
+                                ItemsSource="{Binding MovieCreditList}"
+                                SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.EmptyView>
+                        <StackLayout Padding="10"
+                                     VerticalOptions="Center">
+                            <Label Text="No se encontraron resultados"
+                                   TextColor="#5CA2D4"/>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout WidthRequest="60"
+                                  Padding="10">
+                                <Frame Grid.Row="0"
+                                       HasShadow="False"
+                                       CornerRadius="30"
+                                       HeightRequest="60"
+                                       Padding="0"
+                                       IsClippedToBounds="True">
+                                    <Image Source="{Binding ProfilePath}"
+                                           Aspect="AspectFill"/>
+                                </Frame>
+                                <Label Text="{Binding Name}"
+                                       FontSize="Small"
+                                       TextColor="#7B8593"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".75*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Studio"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding MovieDetail.Studio}"
+                           TextColor="#7B8593"
+                           FontSize="Medium"/>
+                    <Label Grid.Row="1" Grid.Column="0" Text="Genre"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding MovieDetail.Genre}"
+                           TextColor="#7B8593"
+                           FontSize="Medium"/>
+                    <Label Grid.Row="2" Grid.Column="0" Text="Release"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding MovieDetail.ReleaseDate, StringFormat='{0:yyyy}'}"
+                           TextColor="#7B8593"
+                           FontSize="Medium"/>
+                </Grid>
             </Grid>
         </Grid>
     </Frame>

@@ -16,7 +16,12 @@ namespace themovies.Pages
 
         async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            await Navigation.PushAsync(new MovieDetailPage(vm.SelectedMovie));
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                await Navigation.PushAsync(new MovieDetailPage(vm.SelectedMovie));
+                IsBusy = false;
+            }
         }
 
         void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
@@ -36,7 +41,6 @@ namespace themovies.Pages
                 var popularList = vm.PopularList.Where(x => x.Title.ToLower().Contains(e.NewTextValue.ToLower()));
                 PopularCollection.ItemsSource = popularList;
             }
-            
         }
     }
 }

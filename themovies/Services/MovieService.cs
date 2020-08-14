@@ -38,5 +38,19 @@ namespace themovies.Services
 
             return response.Movies;
         }
+
+        public async Task<MovieDetail> GetMovieDetail(long Id)
+        {
+            var url = $"{Config.MainEndpoint}/{Id}?api_key={Config.ApiKey}&language=en-US";
+            var result = await httpClient.GetStringAsync(url);
+            return JsonConvert.DeserializeObject<MovieDetail>(result);
+        }
+
+        public async Task<MovieCredits> GetMovieCredits(long Id)
+        {
+            var url = $"{Config.MainEndpoint}/{Id}/credits?api_key={Config.ApiKey}&language=en-US";
+            var result = await httpClient.GetStringAsync(url);
+            return JsonConvert.DeserializeObject<MovieCredits>(result);
+        }
     }
 }

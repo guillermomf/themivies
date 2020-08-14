@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using themovies.Models;
+﻿using themovies.Models;
 using themovies.ViewModels;
 using Xamarin.Forms;
 
@@ -12,7 +10,13 @@ namespace themovies.Pages
         {
             InitializeComponent();
             var vm = (MovieDetailViewModel)BindingContext;
-            vm.Movie = movie;
+            vm.GetMovieDetail(movie.Id).ConfigureAwait(false);
+            vm.GetMovieCredits(movie.Id).ConfigureAwait(false);
+        }
+
+        async void Button_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PopAsync();
         }
     }
 }
